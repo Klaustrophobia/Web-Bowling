@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowling Center - Noticias</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .navbar-fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    body.with-fixed-nav {
+      padding-top: 80px;
+    }
+  </style>
+</head>
+<body class="with-fixed-nav">
+  <!-- Misma Navbar -->
+  <nav id="navbar" class="bg-white shadow-lg navbar-fixed">
+    <!-- ... (copia el mismo navbar del index.html) ... -->
+  </nav>
+
+  <!-- Contenido específico de Noticias -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center mb-12 text-blue-600">Últimas Noticias</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Noticia 1 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+        <img src="https://via.placeholder.com/600x400?text=Nuevo+Récord" alt="Nuevo Récord" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-2">
+            <span>15 Sept 2023</span>
+            <span class="mx-2">•</span>
+            <span>Torneos</span>
+          </div>
+          <h2 class="text-xl font-bold mb-2">Nuevo récord en nuestro centro</h2>
+          <p class="text-gray-700 mb-4">Juan Pérez estableció un nuevo récord de 290 puntos en el torneo semanal...</p>
+          <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Leer más →</a>
+        </div>
+      </article>
+      
+      <!-- Noticia 2 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+        <img src="https://via.placeholder.com/600x400?text=Renovaciones" alt="Renovaciones" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-2">
+            <span>10 Sept 2023</span>
+            <span class="mx-2">•</span>
+            <span>Instalaciones</span>
+          </div>
+          <h2 class="text-xl font-bold mb-2">Renovamos nuestras pistas</h2>
+          <p class="text-gray-700 mb-4">Hemos actualizado todas nuestras pistas con la última tecnología...</p>
+          <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Leer más →</a>
+        </div>
+      </article>
+      
+      <!-- Noticia 3 -->
+      <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+        <img src="https://via.placeholder.com/600x400?text=Evento+Especial" alt="Evento Especial" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-2">
+            <span>05 Sept 2023</span>
+            <span class="mx-2">•</span>
+            <span>Eventos</span>
+          </div>
+          <h2 class="text-xl font-bold mb-2">Noche de bowling para familias</h2>
+          <p class="text-gray-700 mb-4">Este viernes tendremos promociones especiales para familias...</p>
+          <a href="#" class="text-blue-500 hover:text-blue-700 font-medium">Leer más →</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <!-- ... (copia el footer del index.html) ... -->
+  </footer>
+</body>
+</html>

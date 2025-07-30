@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowling Center - Torneos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .navbar-fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    body.with-fixed-nav {
+      padding-top: 80px;
+    }
+  </style>
+</head>
+<body class="with-fixed-nav">
+  <!-- Misma Navbar -->
+  <nav id="navbar" class="bg-white shadow-lg navbar-fixed">
+    <!-- ... (copia el mismo navbar del index.html) ... -->
+  </nav>
+
+  <!-- Contenido específico de Torneos -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center mb-12 text-blue-600">Próximos Torneos</h1>
+    
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="py-3 px-4 text-left">Fecha</th>
+            <th class="py-3 px-4 text-left">Torneo</th>
+            <th class="py-3 px-4 text-left">Premio</th>
+            <th class="py-3 px-4 text-left">Inscripción</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50">
+            <td class="py-4 px-4">15/10/2023</td>
+            <td class="py-4 px-4 font-medium">Torneo Semanal</td>
+            <td class="py-4 px-4">$5,000 + Trofeo</td>
+            <td class="py-4 px-4">
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md">
+                Inscribirse
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-4 px-4">22/10/2023</td>
+            <td class="py-4 px-4 font-medium">Torneo Dobles</td>
+            <td class="py-4 px-4">$8,000 + Trofeos</td>
+            <td class="py-4 px-4">
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md">
+                Inscribirse
+              </button>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-4 px-4">05/11/2023</td>
+            <td class="py-4 px-4 font-medium">Abierto de Bowling</td>
+            <td class="py-4 px-4">$15,000 + Trofeo</td>
+            <td class="py-4 px-4">
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md">
+                Inscribirse
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="mt-12 bg-blue-50 p-6 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4 text-blue-600">Reglamento de Torneos</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li>Llegar 30 minutos antes del inicio</li>
+        <li>Vestimenta deportiva adecuada</li>
+        <li>Prohibido el consumo de alcohol durante los torneos</li>
+        <li>Se proporcionarán bolas oficiales del torneo</li>
+      </ol>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <!-- ... (copia el footer del index.html) ... -->
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowling Center - Servicios</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .navbar-fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    body.with-fixed-nav {
+      padding-top: 80px;
+    }
+  </style>
+</head>
+<body class="with-fixed-nav">
+  <!-- Misma Navbar que en index.html -->
+  <nav id="navbar" class="bg-white shadow-lg navbar-fixed">
+    <!-- ... (copia el mismo navbar del index.html) ... -->
+  </nav>
+
+  <!-- Contenido específico de Servicios -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center mb-12 text-blue-600">Nuestros Servicios</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Servicio 1 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/600x400?text=Pistas+Premium" alt="Pistas Premium" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-2">Pistas Premium</h2>
+          <p class="text-gray-700 mb-4">Pistas de última generación con sistema de puntuación automático y asientos cómodos.</p>
+          <div class="flex items-center text-yellow-500 mb-2">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Servicio 2 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/600x400?text=Clases+Personalizadas" alt="Clases Personalizadas" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-2">Clases Personalizadas</h2>
+          <p class="text-gray-700 mb-4">Aprende con nuestros instructores certificados y mejora tu técnica.</p>
+          <ul class="text-gray-700 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Para todos los niveles
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-green-500 mr-2"></i>
+              Equipo incluido
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Servicio 3 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img src="https://via.placeholder.com/600x400?text=Eventos+Corporativos" alt="Eventos Corporativos" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h2 class="text-xl font-bold mb-2">Eventos Corporativos</h2>
+          <p class="text-gray-700 mb-4">Paquetes especiales para empresas con áreas privadas y catering.</p>
+          <a href="contacto.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mt-2">
+            Solicitar información
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (igual que en index.html) -->
+  <footer class="bg-gray-800 text-white py-12">
+    <!-- ... (copia el footer del index.html) ... -->
+  </footer>
+
+  <script>
+    // Mismo JavaScript que en index.html para la navbar
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bowling Center - Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .navbar-fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    body.with-fixed-nav {
+      padding-top: 80px;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="with-fixed-nav">
+  <!-- Misma Navbar -->
+  <nav id="navbar" class="bg-white shadow-lg navbar-fixed">
+    <!-- ... (copia el mismo navbar del index.html) ... -->
+  </nav>
+
+  <!-- Contenido específico de Contacto -->
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-center mb-12 text-blue-600">Contáctanos</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Formulario de contacto -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">Envía un mensaje</h2>
+        <form class="space-y-6">
+          <div>
+            <label for="name" class="block text-gray-700 mb-2">Nombre completo</label>
+            <input type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          
+          <div>
+            <label for="email" class="block text-gray-700 mb-2">Correo electrónico</label>
+            <input type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          
+          <div>
+            <label for="subject" class="block text-gray-700 mb-2">Asunto</label>
+            <select id="subject" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Selecciona un asunto</option>
+              <option value="reservations">Reservaciones</option>
+              <option value="events">Eventos corporativos</option>
+              <option value="tournaments">Torneos</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="message" class="block text-gray-700 mb-2">Mensaje</label>
+            <textarea id="message" rows="5" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          </div>
+          
+          <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md font-medium">
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+      
+      <!-- Información de contacto -->
+      <div>
+        <h2 class="text-2xl font-bold mb-6">Información de contacto</h2>
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="text-blue-500 text-xl mr-4 mt-1">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Dirección</h3>
+              <p class="text-gray-700">Av. Principal 123, Col. Centro<br>Ciudad de México, CDMX</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="text-blue-500 text-xl mr-4 mt-1">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Teléfonos</h3>
+              <p class="text-gray-700">
+                Reservaciones: <a href="tel:+525555555555" class="hover:text-blue-500">55-5555-5555</a><br>
+                Administración: <a href="tel:+525555555556" class="hover:text-blue-500">55-5555-5556</a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="text-blue-500 text-xl mr-4 mt-1">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Correo electrónico</h3>
+              <p class="text-gray-700">
+                <a href="mailto:info@bowlingcenter.com" class="hover:text-blue-500">info@bowlingcenter.com</a><br>
+                <a href="mailto:reservaciones@bowlingcenter.com" class="hover:text-blue-500">reservaciones@bowlingcenter.com</a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="text-blue-500 text-xl mr-4 mt-1">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Horario</h3>
+              <p class="text-gray-700">
+                Lunes a Viernes: 10:00 - 22:00<br>
+                Sábado y Domingo: 9:00 - 00:00
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mapa (simulado) -->
+        <div class="mt-8 bg-gray-200 rounded-lg overflow-hidden">
+          <div id="map" class="bg-gray-300 flex items-center justify-center">
+            <p class="text-gray-500">Mapa del establecimiento</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <!-- ... (copia el footer del index.html) ... -->
+  </footer>
+
+  <script>
+    // Mismo JavaScript que en index.html para la navbar
+  </script>
+</body>
+</html>
