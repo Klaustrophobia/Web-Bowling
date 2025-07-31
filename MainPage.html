@@ -1,151 +1,239 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bowling Center</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Strike City</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .nav-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: #2d3748;
+      font-weight: 500;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0.25rem;
+      right: 0.25rem;
+      bottom: 0.1rem;
+      height: 0.4rem;
+      background-color: #8b5cf6;
+      border-radius: 1rem;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+    .logo-container {
+      width: 50%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+    .logo-img {
+      max-height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+    /* Estilos para el slider */
+    .slider-banner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 172, 28, 0.85);
+      padding: 1.5rem 2.5rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      max-width: 80%;
+    }
+    .slider-banner h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      margin-bottom: 0.5rem;
+    }
+    .slider-banner p {
+      font-size: 1.25rem;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    /* Estilos para el footer */
+    .footer-bg {
+      background-color: rgba(45, 55, 72, 0.95);
+      backdrop-filter: blur(5px);
+      border-top: 4px solid #FFAC1C;
+    }
+    .footer-item {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    /* Efectos de transición */
+    .transition-all {
+      transition: all 0.3s ease;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50">
   <!-- Navbar -->
-  <nav class="bg-white shadow-lg">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center">
+  <nav class="bg-[#FFAC1C] shadow-md sticky top-0 z-50 h-20">
+    <div class="max-w-7xl mx-auto px-4 h-full">
+      <div class="nav-container h-full">
+        
         <!-- Menú izquierdo -->
-        <div class="hidden md:flex items-center space-x-8 py-4">
-          <a href="./Servicios.html" class="text-gray-700 hover:text-blue-500 font-medium">Servicios</a>
-          <a href="./Torneos.html" class="text-gray-700 hover:text-blue-500 font-medium">Torneos</a>
+        <div class="hidden md:flex justify-end space-x-8 h-full items-center">
+          <a href="servicios.html" class="nav-link">Servicios</a>
+          <a href="torneos.html" class="nav-link">Torneos</a>
         </div>
         
-        <!-- Logo central -->
-        <div class="flex items-center">
-          <a href="#" class="text-3xl font-bold text-blue-600 mx-4">BOWLING</a>
+        <!-- Logo al 50% y centrado -->
+        <div class="logo-container h-full py-2">
+          <a href="./MainPage.html" class="h-full flex items-center">
+            <img src="./IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
+          </a>
         </div>
         
         <!-- Menú derecho -->
-        <div class="hidden md:flex items-center space-x-8 py-4">
-          <a href="./Noticias.html" class="text-gray-700 hover:text-blue-500 font-medium">Noticias</a>
-          <a href="./Contacto.html" class="text-gray-700 hover:text-blue-500 font-medium">Contáctanos</a>
+        <div class="hidden md:flex justify-start space-x-8 h-full items-center">
+          <a href="noticias.html" class="nav-link">Noticias</a>
+          <a href="contacto.html" class="nav-link">Contáctanos</a>
         </div>
         
-        <!-- Botón móvil -->
-        <div class="md:hidden flex items-center">
-          <button id="menu-btn" class="text-gray-700 focus:outline-none">
+        <!-- Menú móvil -->
+        <div class="md:hidden flex items-center justify-end">
+          <button id="menu-btn" class="text-gray-800 p-2">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
           </button>
         </div>
       </div>
-      
-      <!-- Menú móvil -->
-      <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2">
-        <a href="./Servicios.html" class="block py-2 text-gray-700 hover:text-blue-500">Servicios</a>
-        <a href="./Torneos.html" class="block py-2 text-gray-700 hover:text-blue-500">Torneos</a>
-        <a href="./Noticias.html" class="block py-2 text-gray-700 hover:text-blue-500">Noticias</a>
-        <a href="./Contacto.html" class="block py-2 text-gray-700 hover:text-blue-500">Contáctanos</a>
-      </div>
     </div>
   </nav>
 
-  <!-- Carrusel a pantalla completa sin márgenes -->
+  <!-- Carrusel con banner -->
   <div class="relative w-full overflow-hidden">
-    <!-- Contenedor de slides -->
-    <div id="slider" class="flex transition-transform duration-500 ease-in-out h-[70vh]">
-      <!-- Slide 1 -->
-      <div class="min-w-full">
+    <div id="slider" class="flex transition-transform duration-500 ease-in-out h-[70vh] min-h-[300px]">
+      <div class="min-w-full relative">
         <img src="./IMG/Slider1.jpg" alt="Slide 1" class="w-full h-full object-cover">
+        <div class="slider-banner">
+          <h2>Strike City</h2>
+          <p>El primer bowling que viene a marcar tendencia</p>
+        </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="min-w-full">
+      <div class="min-w-full relative">
         <img src="./IMG/Slider2.jpg" alt="Slide 2" class="w-full h-full object-cover">
+        <div class="slider-banner">
+          <h2>Diversión sin límites</h2>
+          <p>Experiencias únicas para toda la familia</p>
+        </div>
       </div>
-      <!-- Slide 3 -->
-      <div class="min-w-full">
+      <div class="min-w-full relative">
         <img src="./IMG/Slider3.jpg" alt="Slide 3" class="w-full h-full object-cover">
+        <div class="slider-banner">
+          <h2>Torneos emocionantes</h2>
+          <p>Demuestra tus habilidades y gana premios increíbles</p>
+        </div>
       </div>
     </div>
-    
-    <!-- Botones de navegación -->
-    <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">
-      &lt;
-    </button>
-    <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">
-      &gt;
-    </button>
+    <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all">&lt;</button>
+    <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all">&gt;</button>
   </div>
 
-  <!-- Puntos indicadores -->
   <div class="flex justify-center mt-4 space-x-2">
-    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer slider-dot" data-index="0"></span>
-    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer slider-dot" data-index="1"></span>
-    <span class="w-3 h-3 bg-gray-400 rounded-full cursor-pointer slider-dot" data-index="2"></span>
+    <span class="w-3 h-3 bg-[#8b5cf6] rounded-full cursor-pointer slider-dot" data-index="0"></span>
+    <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer slider-dot" data-index="1"></span>
+    <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer slider-dot" data-index="2"></span>
   </div>
 
-  <!-- Sección Collage + Quiénes somos -->
-  <section class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-    <!-- Collage de 3 imágenes -->
+  <!-- Sección Quiénes Somos -->
+  <section class="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
     <div class="grid grid-cols-2 gap-4">
-      <div class="row-span-2">
-        <img src="https://via.placeholder.com/600x600?text=Imagen+1" alt="Imagen 1" class="w-full h-full object-cover rounded-lg">
+      <div class="row-span-2 rounded-lg overflow-hidden shadow-lg">
+        <img src="./IMG/Retro Modern Bowling.jpeg" alt="Imagen 1" class="w-full h-full object-cover">
       </div>
-      <div>
-        <img src="https://via.placeholder.com/600x300?text=Imagen+2" alt="Imagen 2" class="w-full h-full object-cover rounded-lg">
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        <img src="./IMG/Retro Modern Bowling 1.jpeg" alt="Imagen 2" class="w-full h-full object-cover">
       </div>
-      <div>
-        <img src="https://via.placeholder.com/600x300?text=Imagen+3" alt="Imagen 3" class="w-full h-full object-cover rounded-lg">
+      <div class="rounded-lg overflow-hidden shadow-lg">
+        <img src="./IMG/Modern Bowling Birthday Party that has to be funny and entertaining.jpeg" alt="Imagen 3" class="w-full h-full object-cover">
       </div>
     </div>
-    
-    <!-- Quiénes somos -->
     <div class="flex flex-col justify-center">
-      <h2 class="text-3xl font-bold mb-4 text-blue-600">¿Quiénes somos?</h2>
-      <p class="text-lg text-gray-700 mb-4">
-        Bowling Center es el establecimiento líder en diversión familiar desde 1995. Nuestro centro ofrece las mejores pistas de bowling, equipos de última generación y un ambiente único para disfrutar con amigos y familiares.
+      <h2 class="text-4xl font-bold mb-6 text-[#8b5cf6]">¿Quiénes somos?</h2>
+      <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+        Bienvenidos a Strike City, el epicentro del entretenimiento en la ciudad. Más que un boliche, somos un espacio vibrante donde la diversión se multiplica con cada lanzamiento, cada partida de billar y cada ficha insertada en nuestras máquinas arcade.
       </p>
-      <p class="text-lg text-gray-700">
-        Contamos con torneos semanales, eventos especiales y paquetes para celebraciones. Nuestro equipo está comprometido con brindarte la mejor experiencia de bowling en la ciudad.
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Strike City nace del deseo de crear un lugar donde amigos, familias y fanáticos del juego puedan reunirse, competir y compartir momentos inolvidables. Contamos con torneos semanales, eventos especiales y paquetes para celebraciones.
       </p>
+      <button class="mt-8 bg-[#FFAC1C] hover:bg-[#e69c1a] text-white font-bold py-3 px-6 rounded-full self-start transition-all">
+        Conoce más
+      </button>
     </div>
   </section>
 
-  <!-- Sección de Cards -->
-  <section class="max-w-7xl mx-auto px-4 py-12 bg-gray-50 rounded-lg">
-    <h2 class="text-3xl font-bold text-center mb-12 text-blue-600">Nuestros Servicios</h2>
-    
+  <!-- Sección Servicios -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-4xl font-bold text-center mb-16 text-[#8b5cf6]">Nuestros Servicios</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/600x400?text=Servicio+1" alt="Servicio 1" class="w-full h-48 object-cover">
+      <!-- Card 1 - Torneos Semanales -->
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="relative overflow-hidden h-48">
+          <img src="./IMG/Cool Modern Bowling tournament.jpeg" alt="Torneos Semanales" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
+        </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">Torneos Semanales</h3>
-          <p class="text-gray-700 mb-4">Participa en nuestros emocionantes torneos con premios increíbles cada semana.</p>
-          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Torneos Semanales</h3>
+          <p class="text-gray-600 mb-6">Participa en nuestros emocionantes torneos con premios increíbles cada semana.</p>
+          <a href="./Torneos.html" class="inline-block bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-full transition-all">
             Más información
-          </button>
+          </a>
         </div>
       </div>
       
-      <!-- Card 2 -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/600x400?text=Servicio+2" alt="Servicio 2" class="w-full h-48 object-cover">
+      <!-- Card 2 - Fiestas Privadas -->
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="relative overflow-hidden h-48">
+          <img src="./IMG/Cool Modern Bowling Party.jpeg" alt="Fiestas Privadas" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#FFAC1C] to-transparent opacity-30"></div>
+        </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">Fiestas Privadas</h3>
-          <p class="text-gray-700 mb-4">Celebra tu cumpleaños, aniversario o evento especial con nosotros.</p>
-          <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Fiestas Privadas</h3>
+          <p class="text-gray-600 mb-6">Celebra tu cumpleaños, aniversario o evento especial con nosotros.</p>
+          <a href="./Servicios.html" class="inline-block bg-[#FFAC1C] hover:bg-[#e69c1a] text-white px-6 py-2 rounded-full transition-all">
             Más información
-          </button>
+          </a>
         </div>
       </div>
       
-      <!-- Card 3 - Agendar -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        <img src="https://via.placeholder.com/600x400?text=Agendar+Evento" alt="Agendar Evento" class="w-full h-48 object-cover">
+      <!-- Card 3 - Agendar Evento -->
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="relative overflow-hidden h-48">
+          <img src="./IMG/Cool Modern Bowling Schedule Event.jpeg" alt="Agendar Evento" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
+        </div>
         <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">Agendar Evento</h3>
-          <p class="text-gray-700 mb-4">Reserva nuestras instalaciones para tu evento especial o corporativo.</p>
-          <button onclick="openModal()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md w-full">
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Agendar Evento</h3>
+          <p class="text-gray-600 mb-6">Reserva nuestras instalaciones para tu evento especial o corporativo.</p>
+          <button onclick="openModal()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-2 rounded-full transition-all w-full">
             Agendar
           </button>
         </div>
@@ -153,194 +241,182 @@
     </div>
   </section>
 
-  <!-- Modal para agendar -->
+  <!-- Modal -->
   <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
     <div class="bg-white rounded-lg p-6 max-w-md w-full">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="text-2xl font-bold text-blue-600">Agendar Evento</h3>
-        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-          <i class="fas fa-times"></i>
-        </button>
+        <h3 class="text-2xl font-bold text-[#8b5cf6]">Agendar Evento</h3>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
       </div>
-      
       <form id="bookingForm" class="space-y-4">
-        <div>
-          <label for="name" class="block text-gray-700 mb-2">Nombre completo</label>
-          <input type="text" id="name" class="w-full px-4 py-2 border rounded-md" required>
-        </div>
-        
-        <div>
-          <label for="email" class="block text-gray-700 mb-2">Correo electrónico</label>
-          <input type="email" id="email" class="w-full px-4 py-2 border rounded-md" required>
-        </div>
-        
-        <div>
-          <label for="phone" class="block text-gray-700 mb-2">Teléfono</label>
-          <input type="tel" id="phone" class="w-full px-4 py-2 border rounded-md" required>
-        </div>
-        
-        <div>
-          <label for="date" class="block text-gray-700 mb-2">Fecha del evento</label>
-          <input type="date" id="date" class="w-full px-4 py-2 border rounded-md" required>
-        </div>
-        
-        <div>
-          <label for="guests" class="block text-gray-700 mb-2">Número de personas</label>
-          <input type="number" id="guests" min="1" class="w-full px-4 py-2 border rounded-md" required>
-        </div>
-        
-        <div>
-          <label for="details" class="block text-gray-700 mb-2">Detalles adicionales</label>
-          <textarea id="details" rows="3" class="w-full px-4 py-2 border rounded-md"></textarea>
-        </div>
-        
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-full">
+        <div><label for="name" class="block text-gray-700 mb-2">Nombre completo</label><input name="name" type="text" id="name" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]" required></div>
+        <div><label for="email" class="block text-gray-700 mb-2">Correo electrónico</label><input name="email" type="email" id="email" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]" required></div>
+        <div><label for="phone" class="block text-gray-700 mb-2">Teléfono</label><input name="phone" type="tel" id="phone" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]" required></div>
+        <div><label for="date" class="block text-gray-700 mb-2">Fecha del evento</label><input name="date" type="date" id="date" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]" required></div>
+        <div><label for="guests" class="block text-gray-700 mb-2">Número de personas</label><input name="guests" type="number" id="guests" min="1" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]" required></div>
+        <div><label for="details" class="block text-gray-700 mb-2">Detalles adicionales</label><textarea name="details" id="details" rows="3" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6]"></textarea></div>
+        <button type="submit" class="w-full bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-4 py-3 rounded-md transition-all">
           Consultar disponibilidad
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Modal de éxito -->
   <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
     <div class="bg-white rounded-lg p-6 max-w-md w-full text-center">
-      <div class="text-green-500 text-5xl mb-4">
-        <i class="fas fa-check-circle"></i>
-      </div>
+      <div class="text-green-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
       <h3 class="text-2xl font-bold mb-2">¡Solicitud enviada!</h3>
-      <p class="text-gray-700 mb-4">Hemos recibido tu solicitud de reserva. Nos pondremos en contacto contigo en las próximas 24 horas para confirmar disponibilidad.</p>
-      <button onclick="closeSuccessModal()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+      <p class="text-gray-700 mb-4">Nos pondremos en contacto contigo en las próximas 24 horas para confirmar disponibilidad.</p>
+      <button onclick="closeSuccessModal()" class="bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-md transition-all">
         Aceptar
       </button>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-12">
+  <!-- Footer mejorado -->
+  <footer class="footer-bg text-white py-16">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- Información -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">Bowling Center</h3>
-          <p class="text-gray-300">El mejor centro de bowling de la ciudad desde 1995.</p>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="footer-item">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <span class="w-3 h-3 bg-[#FFAC1C] rounded-full mr-2"></span>
+            Strike City
+          </h3>
+          <p class="text-gray-300">El mejor centro de entretenimiento familiar con bowling en la ciudad.</p>
         </div>
         
-        <!-- Contacto -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">Contacto</h3>
-          <p class="text-gray-300 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Av. Principal 123</p>
-          <p class="text-gray-300 mb-2"><i class="fas fa-phone mr-2"></i> +1 234 567 890</p>
-          <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> info@bowlingcenter.com</p>
+        <div class="footer-item">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <span class="w-3 h-3 bg-[#8b5cf6] rounded-full mr-2"></span>
+            Contacto
+          </h3>
+          <p class="text-gray-300 mb-2 flex items-center"><i class="fas fa-map-marker-alt mr-3 text-[#FFAC1C]"></i> Boulevard Suyapa, Tegucigalpa</p>
+          <p class="text-gray-300 mb-2 flex items-center"><i class="fas fa-phone mr-3 text-[#8b5cf6]"></i> +504 9966-7755 </p>
+          <p class="text-gray-300 flex items-center"><i class="fas fa-envelope mr-3 text-[#FFAC1C]"></i> info@strikecity.com</p>
         </div>
         
-        <!-- Horario -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">Horario</h3>
-          <p class="text-gray-300 mb-2">Lunes a Viernes: 10am - 10pm</p>
-          <p class="text-gray-300">Sábado y Domingo: 9am - 12pm</p>
+        <div class="footer-item">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <span class="w-3 h-3 bg-[#FFAC1C] rounded-full mr-2"></span>
+            Horario
+          </h3>
+          <p class="text-gray-300 mb-2"><span class="font-medium">Lunes:</span> MANTENIMIENTO</p>
+          <p class="text-gray-300 mb-2"><span class="font-medium">Martes a Jueves:</span> 3pm - 9pm</p>
+          <p class="text-gray-300"><span class="font-medium">Viernes a Domingo:</span> 12pm - 11pm</p>
         </div>
         
-        <!-- Redes sociales -->
-        <div>
-          <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+        <div class="footer-item">
+          <h3 class="text-xl font-bold mb-4 flex items-center">
+            <span class="w-3 h-3 bg-[#8b5cf6] rounded-full mr-2"></span>
+            Síguenos
+          </h3>
           <div class="flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-gray-300 hover:text-white text-2xl transition-all hover:scale-110">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white text-2xl transition-all hover:scale-110">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white text-2xl transition-all hover:scale-110">
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white text-2xl transition-all hover:scale-110">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+          <div class="mt-4">
+            <p class="text-gray-300 mb-2">Suscríbete a nuestro newsletter:</p>
+            <div class="flex">
+              <input type="email" placeholder="Tu correo" class="px-3 py-2 rounded-l-md bg-gray-700 text-white w-full">
+              <button class="bg-[#FFAC1C] hover:bg-[#e69c1a] text-white px-4 rounded-r-md transition-all">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
       
-      <!-- Derechos de autor -->
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2023 Bowling Center. Todos los derechos reservados.</p>
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Strike City. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script>
-    // Carrusel automático
-    const slider = document.getElementById('slider');
-    const slides = document.querySelectorAll('#slider > div');
-    const dots = document.querySelectorAll('.slider-dot');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      }
 
-    function goToSlide(index) {
-      if (index >= totalSlides) currentIndex = 0;
-      else if (index < 0) currentIndex = totalSlides - 1;
-      else currentIndex = index;
+      const slider = document.getElementById('slider');
+      const slides = document.querySelectorAll('#slider > div');
+      const dots = document.querySelectorAll('.slider-dot');
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+
+      function goToSlide(index) {
+        currentIndex = (index + totalSlides) % totalSlides;
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-[#8b5cf6]', i === currentIndex);
+          dot.classList.toggle('bg-gray-300', i !== currentIndex);
+        });
+      }
+
+      const slideInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
       
-      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-      
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-blue-600', i === currentIndex);
-        dot.classList.toggle('bg-gray-400', i !== currentIndex);
+      document.getElementById('prevBtn')?.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        goToSlide(currentIndex - 1);
       });
-    }
-
-    setInterval(() => goToSlide(currentIndex + 1), 3000);
-
-    document.getElementById('prevBtn')?.addEventListener('click', () => goToSlide(currentIndex - 1));
-    document.getElementById('nextBtn')?.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => goToSlide(parseInt(dot.getAttribute('data-index'))));
-    });
-
-    // Menú móvil
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Modal de agendar
-    const modal = document.getElementById('modal');
-    const successModal = document.getElementById('successModal');
-    const bookingForm = document.getElementById('bookingForm');
-
-    function openModal() {
-      modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-      modal.classList.add('hidden');
-    }
-
-    function openSuccessModal() {
-      successModal.classList.remove('hidden');
-    }
-
-    function closeSuccessModal() {
-      successModal.classList.add('hidden');
-      modal.classList.add('hidden');
-    }
-
-    // Envío del formulario (simulado)
-    bookingForm.addEventListener('submit', function(e) {
-      e.preventDefault();
       
-      // Aquí iría la lógica real para enviar el correo
-      // Por ahora simulamos el envío con un setTimeout
-      setTimeout(() => {
-        closeModal();
-        openSuccessModal();
-        bookingForm.reset();
-      }, 1000);
-    });
+      document.getElementById('nextBtn')?.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        goToSlide(currentIndex + 1);
+      });
+      
+      dots.forEach(dot => dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        goToSlide(parseInt(dot.dataset.index));
+      }));
 
-    // Cerrar modales haciendo clic fuera del contenido
-    window.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-      if (e.target === successModal) {
-        closeSuccessModal();
-      }
+      // Modal functions
+      window.openModal = () => {
+        document.getElementById('modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      window.closeModal = () => {
+        document.getElementById('modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      };
+      
+      window.openSuccessModal = () => {
+        document.getElementById('successModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      };
+      
+      window.closeSuccessModal = () => {
+        document.getElementById('successModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      };
+
+      document.getElementById('bookingForm')?.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setTimeout(() => {
+          closeModal();
+          openSuccessModal();
+          this.reset();
+        }, 1000);
+      });
+
+      window.addEventListener('click', function (e) {
+        if (e.target === document.getElementById('modal')) closeModal();
+        if (e.target === document.getElementById('successModal')) closeSuccessModal();
+      });
     });
   </script>
 </body>
