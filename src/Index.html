@@ -89,6 +89,108 @@
     .transition-all {
       transition: all 0.3s ease;
     }
+
+    /* Estilos para el menú móvil */
+    .mobile-menu-container {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: white;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: right 0.3s ease-out;
+    }
+
+    .mobile-menu-container.open {
+      right: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-header {
+      padding: 1rem;
+      background-color: #FFAC1C;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-menu-content {
+      padding: 1rem;
+    }
+
+    .mobile-menu-link {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: #2d3748;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu-link:hover {
+      background-color: #f3f4f6;
+      color: #8b5cf6;
+    }
+
+    .mobile-menu-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background-color: #8b5cf6;
+      transition: width 0.3s ease;
+    }
+
+    .mobile-menu-link:hover::after {
+      width: 100%;
+    }
+
+    /* Animación para el menú móvil */
+    @keyframes slideDown {
+      from {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+      to {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
+    #mobile-menu {
+      transform: scaleY(0);
+      transform-origin: top;
+      opacity: 0;
+      display: block !important;
+    }
+
+    #mobile-menu.open {
+      animation: slideDown 0.3s ease-out forwards;
+    }
+
+    #menu-overlay {
+      transition: opacity 0.3s ease;
+    }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -99,54 +201,85 @@
         
         <!-- Menú izquierdo -->
         <div class="hidden md:flex justify-end space-x-8 h-full items-center">
-          <a href="servicios.html" class="nav-link">Servicios</a>
-          <a href="torneos.html" class="nav-link">Torneos</a>
+          <a href="./Servicios.html" class="nav-link">Servicios</a>
+          <a href="./Torneos.html" class="nav-link">Torneos</a>
         </div>
         
         <!-- Logo al 50% y centrado -->
         <div class="logo-container h-full py-2">
-          <a href="./MainPage.html" class="h-full flex items-center">
-            <img src="./IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
+          <a href="./Index.html" class="h-full flex items-center">
+            <img src="../IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
           </a>
         </div>
         
         <!-- Menú derecho -->
         <div class="hidden md:flex justify-start space-x-8 h-full items-center">
-          <a href="noticias.html" class="nav-link">Noticias</a>
-          <a href="contacto.html" class="nav-link">Contáctanos</a>
+          <a href="./Noticias.html" class="nav-link">Noticias</a>
+          <a href="./Contacto.html" class="nav-link">Contáctanos</a>
         </div>
         
-        <!-- Menú móvil -->
-        <div class="md:hidden flex items-center justify-end">
-          <button id="menu-btn" class="text-gray-800 p-2">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          </button>
-        </div>
+        <!-- Menú móvil lateral -->
+          <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+          <div id="mobile-menu-container" class="mobile-menu-container">
+            <div class="mobile-menu-header">
+              <img src="../IMG/Logo.png" alt="Strike City" class="h-10">
+              <button id="mobile-menu-close" class="text-gray-800 p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+            <div class="mobile-menu-content">
+              <a href="./Servicios.html" class="mobile-menu-link">Servicios</a>
+              <a href="./Torneos.html" class="mobile-menu-link">Torneos</a>
+              <a href="./Noticias.html" class="mobile-menu-link">Noticias</a>
+              <a href="./Contacto.html" class="mobile-menu-link">Contáctanos</a>
+            </div>
+          </div>
       </div>
     </div>
   </nav>
+  
+  <!-- Menú móvil desplegable -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute top-20 left-0 right-0 z-40 transition-all duration-300 transform origin-top">
+    <div class="px-4 py-2 space-y-1">
+      <a href="./Servicios.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#FFAC1C] hover:text-white rounded-md transition-all flex items-center">
+        <i class="fas fa-concierge-bell mr-2"></i> Servicios
+      </a>
+      <a href="./Torneos.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#8b5cf6] hover:text-white rounded-md transition-all flex items-center">
+        <i class="fas fa-trophy mr-2"></i> Torneos
+      </a>
+      <a href="./Noticias.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#FFAC1C] hover:text-white rounded-md transition-all flex items-center">
+        <i class="fas fa-newspaper mr-2"></i> Noticias
+      </a>
+      <a href="./Contacto.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#8b5cf6] hover:text-white rounded-md transition-all flex items-center">
+        <i class="fas fa-envelope mr-2"></i> Contáctanos
+      </a>
+    </div>
+  </div>
+
+  <!-- Overlay para cerrar el menú -->
+  <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
 
   <!-- Carrusel con banner -->
   <div class="relative w-full overflow-hidden">
     <div id="slider" class="flex transition-transform duration-500 ease-in-out h-[70vh] min-h-[300px]">
       <div class="min-w-full relative">
-        <img src="./IMG/Slider1.jpg" alt="Slide 1" class="w-full h-full object-cover">
+        <img src="../IMG/Slider1.jpg" alt="Slide 1" class="w-full h-full object-cover">
         <div class="slider-banner">
           <h2>Strike City</h2>
           <p>El primer bowling que viene a marcar tendencia</p>
         </div>
       </div>
       <div class="min-w-full relative">
-        <img src="./IMG/Slider2.jpg" alt="Slide 2" class="w-full h-full object-cover">
+        <img src="../IMG/Slider2.jpg" alt="Slide 2" class="w-full h-full object-cover">
         <div class="slider-banner">
           <h2>Diversión sin límites</h2>
           <p>Experiencias únicas para toda la familia</p>
         </div>
       </div>
       <div class="min-w-full relative">
-        <img src="./IMG/Slider3.jpg" alt="Slide 3" class="w-full h-full object-cover">
+        <img src="../IMG/Slider3.jpg" alt="Slide 3" class="w-full h-full object-cover">
         <div class="slider-banner">
           <h2>Torneos emocionantes</h2>
           <p>Demuestra tus habilidades y gana premios increíbles</p>
@@ -167,13 +300,13 @@
   <section class="max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-12">
     <div class="grid grid-cols-2 gap-4">
       <div class="row-span-2 rounded-lg overflow-hidden shadow-lg">
-        <img src="./IMG/Retro Modern Bowling.jpeg" alt="Imagen 1" class="w-full h-full object-cover">
+        <img src="../IMG/Retro Modern Bowling.jpeg" alt="Imagen 1" class="w-full h-full object-cover">
       </div>
       <div class="rounded-lg overflow-hidden shadow-lg">
-        <img src="./IMG/Retro Modern Bowling 1.jpeg" alt="Imagen 2" class="w-full h-full object-cover">
+        <img src="../IMG/Retro Modern Bowling 1.jpeg" alt="Imagen 2" class="w-full h-full object-cover">
       </div>
       <div class="rounded-lg overflow-hidden shadow-lg">
-        <img src="./IMG/Modern Bowling Birthday Party that has to be funny and entertaining.jpeg" alt="Imagen 3" class="w-full h-full object-cover">
+        <img src="../IMG/Modern Bowling Birthday Party that has to be funny and entertaining.jpeg" alt="Imagen 3" class="w-full h-full object-cover">
       </div>
     </div>
     <div class="flex flex-col justify-center">
@@ -197,7 +330,7 @@
       <!-- Card 1 - Torneos Semanales -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="./IMG/Cool Modern Bowling tournament.jpeg" alt="Torneos Semanales" class="w-full h-full object-cover">
+          <img src="../IMG/Cool Modern Bowling tournament.jpeg" alt="Torneos Semanales" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
@@ -212,7 +345,7 @@
       <!-- Card 2 - Fiestas Privadas -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="./IMG/Cool Modern Bowling Party.jpeg" alt="Fiestas Privadas" class="w-full h-full object-cover">
+          <img src="../IMG/Cool Modern Bowling Party.jpeg" alt="Fiestas Privadas" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#FFAC1C] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
@@ -227,7 +360,7 @@
       <!-- Card 3 - Agendar Evento -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="./IMG/Cool Modern Bowling Schedule Event.jpeg" alt="Agendar Evento" class="w-full h-full object-cover">
+          <img src="../IMG/Cool Modern Bowling Schedule Event.jpeg" alt="Agendar Evento" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
@@ -344,13 +477,59 @@
 
   <!-- Script -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuBtn = document.getElementById('menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    
+    // Función para alternar el menú
+    function toggleMenu() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuOverlay.classList.toggle('hidden');
+      
+      // Cambiar el icono del botón
+      if (isOpen) {
+        menuBtn.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        `;
+        document.body.style.overflow = 'hidden';
+      } else {
+        menuBtn.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        `;
+        document.body.style.overflow = 'auto';
       }
+    }
 
+    // Evento para el botón del menú
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+    }
+
+    // Cerrar menú al hacer clic en el overlay
+    menuOverlay.addEventListener('click', toggleMenu);
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', toggleMenu);
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+      if (mobileMenu.classList.contains('open') && 
+          !mobileMenu.contains(e.target) && 
+          e.target !== menuBtn) {
+        toggleMenu();
+      }
+    });
+  });
       const slider = document.getElementById('slider');
       const slides = document.querySelectorAll('#slider > div');
       const dots = document.querySelectorAll('.slider-dot');
@@ -417,7 +596,6 @@
         if (e.target === document.getElementById('modal')) closeModal();
         if (e.target === document.getElementById('successModal')) closeSuccessModal();
       });
-    });
   </script>
 </body>
 </html>
