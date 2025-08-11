@@ -22,6 +22,8 @@
       padding: 0.5rem 1rem;
       color: #2d3748;
       font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
     .nav-link::after {
       content: '';
@@ -90,65 +92,263 @@
       transition: all 0.3s ease;
     }
 
-    /* Estilos para el menú móvil */
-    .mobile-menu-container {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background-color: white;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transition: right 0.3s ease-out;
+    /* Estilos base del menú móvil - SIN CONFLICTOS */
+    .mobile-menu {
+      display: none;
+    }
+    .mobile-overlay {
+      display: none;
     }
 
-    .mobile-menu-container.open {
-      right: 0;
+    /* FIXES ESPECÍFICOS PARA MÓVIL SOLAMENTE */
+    @media (max-width: 768px) {
+      /* Navbar móvil optimizado */
+      .nav-container {
+        grid-template-columns: auto 1fr auto;
+        padding: 0 1rem;
+      }
+      .logo-container {
+        width: auto;
+      }
+      
+      /* Logo más pequeño en móvil */
+      .logo-img {
+        max-height: 45px !important;
+        height: 45px !important;
+      }
+      
+      /* Toggle button bien visible */
+      #mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+      }
+      
+      /* MENÚ MÓVIL DESDE LA DERECHA - FORZADO PARA MÓVIL */
+      .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: -320px !important;
+        width: 300px !important;
+        height: 100vh !important;
+        background: #ffffff !important;
+        z-index: 99999 !important;
+        transform: translateX(0) !important;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      .mobile-menu.active {
+        right: 0 !important;
+      }
+      
+      .mobile-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: all 0.3s ease !important;
+        display: block !important;
+      }
+      
+      .mobile-overlay.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      /* Elementos del menú móvil */
+      .mobile-menu-header {
+        background: #FFAC1C !important;
+        padding: 1.25rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border-bottom: 2px solid rgba(0,0,0,0.1) !important;
+      }
+      
+      .mobile-menu-item {
+        display: flex !important;
+        align-items: center !important;
+        padding: 1.25rem 1.5rem !important;
+        color: #2d3748 !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .mobile-menu-item:hover {
+        background: linear-gradient(90deg, #f8fafc, #e2e8f0) !important;
+        color: #8b5cf6 !important;
+        padding-left: 2rem !important;
+      }
+      
+      .mobile-menu-item i {
+        margin-right: 12px !important;
+        width: 18px !important;
+        font-size: 16px !important;
+        color: #FFAC1C !important;
+      }
+    }
+      
+      /* Modal de reservación optimizado para móvil */
+      .modal-content {
+        max-height: 85vh;
+        margin: 2rem 1rem;
+        padding: 1rem;
+      }
+      
+      /* Grid de pistas responsivo */
+      .lanes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      
+      /* Formulario más compacto en móvil */
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Botones de navegación más grandes */
+      .step-navigation button {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      /* Slider banner más pequeño */
+      .slider-banner {
+        padding: 1rem 1.5rem;
+        max-width: 90%;
+      }
+      .slider-banner h2 {
+        font-size: 1.75rem !important;
+      }
+      .slider-banner p {
+        font-size: 1rem !important;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      /* Header más compacto */
+      .nav-container {
+        padding: 0 0.5rem;
+      }
+      
+      /* Modal de reservación para pantallas muy pequeñas */
+      .modal-content {
+        margin: 1rem 0.5rem;
+        padding: 0.75rem;
+        max-height: 90vh;
+      }
+      
+      /* Servicios en una sola columna */
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      /* Pistas en grid 2x4 en móvil pequeño */
+      .lanes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+      
+      /* Textos más pequeños */
+      h1 {
+        font-size: 2rem !important;
+      }
+      h2 {
+        font-size: 1.5rem !important;
+      }
+      h3 {
+        font-size: 1.25rem !important;
+      }
+      
+      /* Inputs más grandes para toque */
+      input, select, textarea {
+        min-height: 48px;
+        font-size: 16px; /* Evita zoom en iOS */
+      }
+      
+      /* Botones más grandes para toque */
+      button {
+        min-height: 44px;
+        font-size: 14px;
+      }
+      
+      /* Espaciado reducido */
+      .step-content {
+        padding: 0.5rem 0;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      /* Para pantallas muy pequeñas */
+      .slider-banner h2 {
+        font-size: 1.5rem !important;
+      }
+      .slider-banner p {
+        font-size: 0.875rem !important;
+      }
+      
+      /* Modal casi pantalla completa */
+      .modal-content {
+        margin: 0.5rem;
+        padding: 0.5rem;
+        max-height: 95vh;
+      }
+      
+      /* Información más compacta */
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      
+      .lane-option div {
+        padding: 0.75rem 0.5rem;
+      }
+      
+      /* Menú móvil para pantallas pequeñas */
+      .mobile-menu {
+        width: 90%;
+      }
     }
 
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* Mejoras de accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
-
-    .mobile-menu-overlay.open {
-      opacity: 1;
-      visibility: visible;
+    
+    /* Modo oscuro automático */
+    @media (prefers-color-scheme: dark) {
+      .mobile-menu {
+        background: #1f2937;
+        color: #f9fafb;
+      }
+      .mobile-menu-item {
+        color: #f9fafb;
+        border-color: #374151;
+      }
+      .mobile-menu-item:hover {
+        background: #374151;
+      }
     }
-
-    .mobile-menu-header {
-      padding: 1rem;
-      background-color: #FFAC1C;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mobile-menu-content {
-      padding: 1rem;
-    }
-
-    .mobile-menu-link {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: #2d3748;
-      font-weight: 500;
-      border-radius: 0.375rem;
-      transition: all 0.2s ease;
-    }
-
-    .mobile-menu-link:hover {
-      background-color: #f3f4f6;
       color: #8b5cf6;
     }
 
@@ -208,7 +408,7 @@
         <!-- Logo al 50% y centrado -->
         <div class="logo-container h-full py-2">
           <a href="./Index.html" class="h-full flex items-center">
-            <img src="../IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
+            <img src="./IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
           </a>
         </div>
         
@@ -218,48 +418,46 @@
           <a href="./Contacto.html" class="nav-link">Contáctanos</a>
         </div>
         
-        <!-- Menú móvil lateral -->
-          <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
-          <div id="mobile-menu-container" class="mobile-menu-container">
-            <div class="mobile-menu-header">
-              <img src="../IMG/Logo.png" alt="Strike City" class="h-10">
-              <button id="mobile-menu-close" class="text-gray-800 p-1">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-              </button>
-            </div>
-            <div class="mobile-menu-content">
-              <a href="./Servicios.html" class="mobile-menu-link">Servicios</a>
-              <a href="./Torneos.html" class="mobile-menu-link">Torneos</a>
-              <a href="./Noticias.html" class="mobile-menu-link">Noticias</a>
-              <a href="./Contacto.html" class="mobile-menu-link">Contáctanos</a>
-            </div>
-          </div>
+        <!-- Botón menú móvil -->
+        <div class="md:hidden flex items-center justify-end">
+          <button id="mobile-menu-btn" class="text-gray-800 p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
   
-  <!-- Menú móvil desplegable -->
-  <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute top-20 left-0 right-0 z-40 transition-all duration-300 transform origin-top">
-    <div class="px-4 py-2 space-y-1">
-      <a href="./Servicios.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#FFAC1C] hover:text-white rounded-md transition-all flex items-center">
-        <i class="fas fa-concierge-bell mr-2"></i> Servicios
+  <!-- Overlay para menú móvil -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- Menú móvil lateral -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <img src="./IMG/Logo.png" alt="Strike City" class="h-8">
+      <button id="mobile-menu-close" class="text-gray-800 p-1 hover:bg-white hover:bg-opacity-20 rounded">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="py-4">
+      <a href="./Servicios.html" class="mobile-menu-item">
+        <i class="fas fa-concierge-bell mr-3"></i>Servicios
       </a>
-      <a href="./Torneos.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#8b5cf6] hover:text-white rounded-md transition-all flex items-center">
-        <i class="fas fa-trophy mr-2"></i> Torneos
+      <a href="./Torneos.html" class="mobile-menu-item">
+        <i class="fas fa-trophy mr-3"></i>Torneos
       </a>
-      <a href="./Noticias.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#FFAC1C] hover:text-white rounded-md transition-all flex items-center">
-        <i class="fas fa-newspaper mr-2"></i> Noticias
+      <a href="./Noticias.html" class="mobile-menu-item">
+        <i class="fas fa-newspaper mr-3"></i>Noticias
       </a>
-      <a href="./Contacto.html" class="block px-3 py-3 text-gray-800 font-medium hover:bg-[#8b5cf6] hover:text-white rounded-md transition-all flex items-center">
-        <i class="fas fa-envelope mr-2"></i> Contáctanos
+      <a href="./Contacto.html" class="mobile-menu-item">
+        <i class="fas fa-envelope mr-3"></i>Contáctanos
       </a>
     </div>
   </div>
-
-  <!-- Overlay para cerrar el menú -->
-  <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
 
   <!-- Carrusel con banner -->
   <div class="relative w-full overflow-hidden">
@@ -326,47 +524,65 @@
   <!-- Sección Servicios -->
   <section class="max-w-7xl mx-auto px-4 py-16">
     <h2 class="text-4xl font-bold text-center mb-16 text-[#8b5cf6]">Nuestros Servicios</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Card 1 - Torneos Semanales -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Card 1 - Reservar Pistas (NUEVA) -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="../IMG/Cool Modern Bowling tournament.jpeg" alt="Torneos Semanales" class="w-full h-full object-cover">
+          <img src="./IMG/Premium Bowling.jpeg" alt="Reservar Pistas" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#10B981] to-transparent opacity-30"></div>
+          <div class="absolute top-3 right-3 bg-[#10B981] text-white px-2 py-1 rounded-full text-xs font-bold">
+            ¡NUEVO!
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-3 text-gray-800">Reservar Pistas</h3>
+          <p class="text-gray-600 mb-6">Reserva tu pista favorita con anticipación y garantiza tu diversión.</p>
+          <button onclick="openLaneReservationModal()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-2 rounded-full transition-all w-full font-semibold">
+            <i class="fas fa-bowling-ball mr-2"></i>Reservar Ahora
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2 - Torneos Semanales -->
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+        <div class="relative overflow-hidden h-48">
+          <img src="./IMG/Cool Modern Bowling tournament.jpeg" alt="Torneos Semanales" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
           <h3 class="text-2xl font-bold mb-3 text-gray-800">Torneos Semanales</h3>
           <p class="text-gray-600 mb-6">Participa en nuestros emocionantes torneos con premios increíbles cada semana.</p>
-          <a href="./Torneos.html" class="inline-block bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-full transition-all">
+          <a href="./Torneos.html" class="inline-block bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-full transition-all w-full text-center">
             Más información
           </a>
         </div>
       </div>
       
-      <!-- Card 2 - Fiestas Privadas -->
+      <!-- Card 3 - Fiestas Privadas -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="../IMG/Cool Modern Bowling Party.jpeg" alt="Fiestas Privadas" class="w-full h-full object-cover">
+          <img src="./IMG/Cool Modern Bowling Party.jpeg" alt="Fiestas Privadas" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#FFAC1C] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
           <h3 class="text-2xl font-bold mb-3 text-gray-800">Fiestas Privadas</h3>
           <p class="text-gray-600 mb-6">Celebra tu cumpleaños, aniversario o evento especial con nosotros.</p>
-          <a href="./Servicios.html" class="inline-block bg-[#FFAC1C] hover:bg-[#e69c1a] text-white px-6 py-2 rounded-full transition-all">
+          <a href="./Servicios.html" class="inline-block bg-[#FFAC1C] hover:bg-[#e69c1a] text-white px-6 py-2 rounded-full transition-all w-full text-center">
             Más información
           </a>
         </div>
       </div>
       
-      <!-- Card 3 - Agendar Evento -->
+      <!-- Card 4 - Agendar Evento -->
       <div class="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
         <div class="relative overflow-hidden h-48">
-          <img src="../IMG/Cool Modern Bowling Schedule Event.jpeg" alt="Agendar Evento" class="w-full h-full object-cover">
+          <img src="./IMG/Cool Modern Bowling Schedule Event.jpeg" alt="Agendar Evento" class="w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-[#8b5cf6] to-transparent opacity-30"></div>
         </div>
         <div class="p-6">
           <h3 class="text-2xl font-bold mb-3 text-gray-800">Agendar Evento</h3>
           <p class="text-gray-600 mb-6">Reserva nuestras instalaciones para tu evento especial o corporativo.</p>
-          <button onclick="openModal()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-2 rounded-full transition-all w-full">
+          <button onclick="openModal()" class="bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-full transition-all w-full font-semibold">
             Agendar
           </button>
         </div>
@@ -402,6 +618,417 @@
       <p class="text-gray-700 mb-4">Nos pondremos en contacto contigo en las próximas 24 horas para confirmar disponibilidad.</p>
       <button onclick="closeSuccessModal()" class="bg-[#8b5cf6] hover:bg-[#7c4dff] text-white px-6 py-2 rounded-md transition-all">
         Aceptar
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal de Reservación de Pistas -->
+  <div id="laneReservationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-3xl font-bold text-[#10B981]">
+          <i class="fas fa-bowling-ball mr-3"></i>Reservar Pistas
+        </h3>
+        <button onclick="closeLaneReservationModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <!-- Paso 1: Información del Cliente -->
+      <div id="step1" class="step-content">
+        <div class="mb-6">
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-[#10B981] text-white rounded-full flex items-center justify-center font-bold mr-3">1</div>
+            <h4 class="text-xl font-semibold">Información del Cliente</h4>
+          </div>
+        </div>
+        
+        <form id="laneReservationForm" class="space-y-6">
+          <!-- Información Personal -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="customerName" class="block text-gray-700 mb-2 font-medium">
+                <i class="fas fa-user mr-2 text-[#10B981]"></i>Nombre completo *
+              </label>
+              <input type="text" id="customerName" name="customerName" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" placeholder="Tu nombre completo" required>
+            </div>
+            
+            <div>
+              <label for="customerEmail" class="block text-gray-700 mb-2 font-medium">
+                <i class="fas fa-envelope mr-2 text-[#FFAC1C]"></i>Correo electrónico *
+              </label>
+              <input type="email" id="customerEmail" name="customerEmail" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" placeholder="tu@email.com" required>
+            </div>
+            
+            <div>
+              <label for="customerPhone" class="block text-gray-700 mb-2 font-medium">
+                <i class="fas fa-phone mr-2 text-[#8b5cf6]"></i>Teléfono *
+              </label>
+              <input type="tel" id="customerPhone" name="customerPhone" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" placeholder="+504 0000-0000" required>
+            </div>
+            
+            <div>
+              <label for="playerCount" class="block text-gray-700 mb-2 font-medium">
+                <i class="fas fa-users mr-2 text-[#10B981]"></i>Número de jugadores *
+              </label>
+              <select id="playerCount" name="playerCount" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" required>
+                <option value="">Seleccionar...</option>
+                <option value="1">1 jugador</option>
+                <option value="2">2 jugadores</option>
+                <option value="3">3 jugadores</option>
+                <option value="4">4 jugadores</option>
+                <option value="5">5 jugadores</option>
+                <option value="6">6 jugadores</option>
+                <option value="7">7 jugadores</option>
+                <option value="8">8 jugadores</option>
+                <option value="9">9 jugadores</option>
+                <option value="10">10 jugadores</option>
+                <option value="11">11 jugadores</option>
+                <option value="12">12 jugadores</option>
+                <option value="15">15 jugadores</option>
+                <option value="20">20 jugadores</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Configuración de Pistas -->
+          <div class="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
+            <h5 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+              <i class="fas fa-bowling-ball mr-2 text-[#10B981]"></i>
+              Configuración de Pistas
+            </h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="laneCount" class="block text-gray-700 mb-2 font-medium">
+                  <i class="fas fa-list-ol mr-2 text-[#FFAC1C]"></i>Cantidad de pistas *
+                </label>
+                <select id="laneCount" name="laneCount" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="1">1 pista</option>
+                  <option value="2">2 pistas</option>
+                  <option value="3">3 pistas</option>
+                  <option value="4">4 pistas</option>
+                  <option value="5">5 pistas</option>
+                  <option value="6">6 pistas</option>
+                  <option value="7">7 pistas</option>
+                  <option value="8">8 pistas (todas)</option>
+                </select>
+              </div>
+              <div>
+                <label for="lanePreference" class="block text-gray-700 mb-2 font-medium">
+                  <i class="fas fa-star mr-2 text-[#8b5cf6]"></i>Preferencia de pistas
+                </label>
+                <select id="lanePreference" name="lanePreference" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all">
+                  <option value="any">Cualquier pista disponible</option>
+                  <option value="consecutive">Pistas consecutivas</option>
+                  <option value="separated">Pistas separadas</option>
+                  <option value="center">Pistas del centro</option>
+                  <option value="edges">Pistas de los extremos</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Información dinámica -->
+            <div id="laneInfo" class="mt-3 p-3 bg-white rounded-lg border hidden">
+              <div class="flex items-center text-sm text-gray-600">
+                <i class="fas fa-info-circle mr-2 text-blue-500"></i>
+                <span id="laneInfoText">Selecciona la cantidad de pistas para ver información adicional</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="button" onclick="nextStep()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-3 rounded-lg font-semibold transition-all">
+              Siguiente <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Paso 2: Selección de Fecha y Hora -->
+      <div id="step2" class="step-content hidden">
+        <div class="mb-6">
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-[#10B981] text-white rounded-full flex items-center justify-center font-bold mr-3">2</div>
+            <h4 class="text-xl font-semibold">Fecha y Hora</h4>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="reservationDate" class="block text-gray-700 mb-3 font-medium">
+              <i class="fas fa-calendar mr-2 text-[#FFAC1C]"></i>Fecha de reservación *
+            </label>
+            <input type="date" id="reservationDate" name="reservationDate" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" required>
+          </div>
+          
+          <div>
+            <label for="timeSlot" class="block text-gray-700 mb-3 font-medium">
+              <i class="fas fa-clock mr-2 text-[#8b5cf6]"></i>Horario *
+            </label>
+            <select id="timeSlot" name="timeSlot" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" required>
+              <option value="">Seleccionar horario...</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="13:00">1:00 PM</option>
+              <option value="14:00">2:00 PM</option>
+              <option value="15:00">3:00 PM</option>
+              <option value="16:00">4:00 PM</option>
+              <option value="17:00">5:00 PM</option>
+              <option value="18:00">6:00 PM</option>
+              <option value="19:00">7:00 PM</option>
+              <option value="20:00">8:00 PM</option>
+              <option value="21:00">9:00 PM</option>
+              <option value="22:00">10:00 PM</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="mt-6">
+          <label for="duration" class="block text-gray-700 mb-3 font-medium">
+            <i class="fas fa-hourglass-half mr-2 text-[#10B981]"></i>Duración *
+          </label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all">
+              <input type="radio" name="duration" value="1" class="mr-2">
+              <span>1 hora</span>
+            </label>
+            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all">
+              <input type="radio" name="duration" value="1.5" class="mr-2">
+              <span>1.5 horas</span>
+            </label>
+            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all">
+              <input type="radio" name="duration" value="2" class="mr-2">
+              <span>2 horas</span>
+            </label>
+            <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all">
+              <input type="radio" name="duration" value="3" class="mr-2">
+              <span>3 horas</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="flex justify-between mt-8">
+          <button type="button" onclick="previousStep()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            <i class="fas fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button type="button" onclick="nextStep()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            Siguiente <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Paso 3: Selección de Pistas -->
+      <div id="step3" class="step-content hidden">
+        <div class="mb-6">
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-[#10B981] text-white rounded-full flex items-center justify-center font-bold mr-3">3</div>
+            <h4 class="text-xl font-semibold">Seleccionar Pistas</h4>
+          </div>
+          <div id="laneSelectionInstructions" class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+            <div class="flex items-start">
+              <i class="fas fa-info-circle text-blue-500 mt-1 mr-2"></i>
+              <div class="text-sm text-blue-800">
+                <strong>Instrucciones:</strong> Selecciona <span id="requiredLaneCount" class="font-bold text-blue-600">1</span> pista(s) para tu reservación. Las pistas en rojo están ocupadas y no se pueden seleccionar.
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div class="lane-option available" data-lane="1">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 1</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+          <div class="lane-option available" data-lane="2">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 2</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+          <div class="lane-option occupied" data-lane="3">
+            <div class="p-4 border-2 border-red-200 rounded-lg cursor-not-allowed text-center bg-red-50 relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold text-red-600">Pista 3</div>
+              <div class="text-sm text-red-600">Ocupada</div>
+              <div class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✗
+              </div>
+            </div>
+          </div>
+          <div class="lane-option available" data-lane="4">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 4</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+          <div class="lane-option available" data-lane="5">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 5</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+          <div class="lane-option available" data-lane="6">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 6</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+          <div class="lane-option occupied" data-lane="7">
+            <div class="p-4 border-2 border-red-200 rounded-lg cursor-not-allowed text-center bg-red-50 relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold text-red-600">Pista 7</div>
+              <div class="text-sm text-red-600">Ocupada</div>
+              <div class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✗
+              </div>
+            </div>
+          </div>
+          <div class="lane-option available" data-lane="8">
+            <div class="p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#10B981] transition-all text-center relative">
+              <div class="text-2xl mb-2">🎳</div>
+              <div class="font-bold">Pista 8</div>
+              <div class="text-sm text-green-600">Disponible</div>
+              <div class="lane-selection-indicator hidden absolute top-2 right-2 bg-[#10B981] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen de selección -->
+        <div id="laneSelectionSummary" class="bg-green-50 p-4 rounded-lg border border-green-200 hidden">
+          <div class="flex items-center">
+            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+            <div class="text-sm">
+              <strong class="text-green-800">Pistas seleccionadas:</strong> 
+              <span id="selectedLanesText" class="text-green-700 font-medium">Ninguna</span>
+              <span id="selectionCount" class="ml-2 text-green-600">(0/0)</span>
+            </div>
+          </div>
+        </div>
+        
+        <input type="hidden" id="selectedLanes" name="selectedLanes">
+        
+        <div class="flex justify-between mt-8">
+          <button type="button" onclick="previousStep()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            <i class="fas fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button type="button" onclick="nextStep()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-3 rounded-lg font-semibold transition-all" disabled id="continueToSummary">
+            Siguiente <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Paso 4: Resumen y Confirmación -->
+      <div id="step4" class="step-content hidden">
+        <div class="mb-6">
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 bg-[#10B981] text-white rounded-full flex items-center justify-center font-bold mr-3">4</div>
+            <h4 class="text-xl font-semibold">Resumen de Reservación</h4>
+          </div>
+        </div>
+        
+        <div class="bg-gray-50 p-6 rounded-lg mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <strong class="text-gray-700">Cliente:</strong>
+              <div id="summaryName" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Teléfono:</strong>
+              <div id="summaryPhone" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Email:</strong>
+              <div id="summaryEmail" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Jugadores:</strong>
+              <div id="summaryPlayers" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Fecha:</strong>
+              <div id="summaryDate" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Hora:</strong>
+              <div id="summaryTime" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Duración:</strong>
+              <div id="summaryDuration" class="text-gray-600"></div>
+            </div>
+            <div>
+              <strong class="text-gray-700">Pista:</strong>
+              <div id="summaryLane" class="text-gray-600 font-bold text-[#10B981]"></div>
+            </div>
+          </div>
+          
+          <div class="mt-4 pt-4 border-t border-gray-300">
+            <div class="flex justify-between items-center">
+              <span class="text-lg font-bold">Total Estimado:</span>
+              <span class="text-2xl font-bold text-[#10B981]" id="totalPrice">L. 0.00</span>
+            </div>
+            <div class="text-sm text-gray-500 mt-1">*Precio sujeto a confirmación</div>
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <label for="specialRequests" class="block text-gray-700 mb-2 font-medium">
+            <i class="fas fa-comment mr-2 text-[#FFAC1C]"></i>Solicitudes especiales (opcional)
+          </label>
+          <textarea id="specialRequests" name="specialRequests" rows="3" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#10B981] focus:outline-none transition-all" placeholder="Ej: Celebración de cumpleaños, música especial, etc."></textarea>
+        </div>
+        
+        <div class="flex justify-between">
+          <button type="button" onclick="previousStep()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+            <i class="fas fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button type="submit" form="laneReservationForm" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-8 py-3 rounded-lg font-semibold transition-all">
+            <i class="fas fa-check mr-2"></i>Confirmar Reservación
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación de reservación -->
+  <div id="reservationSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-xl p-8 max-w-md w-full text-center">
+      <div class="text-[#10B981] text-6xl mb-4">
+        <i class="fas fa-bowling-ball"></i>
+      </div>
+      <h3 class="text-2xl font-bold mb-4">¡Reservación Enviada!</h3>
+      <p class="text-gray-700 mb-4">Tu solicitud de reservación ha sido enviada exitosamente. Te contactaremos en las próximas horas para confirmar disponibilidad y procesar el pago.</p>
+      <div class="bg-[#10B981] bg-opacity-10 p-4 rounded-lg mb-4">
+        <p class="text-sm text-gray-600">
+          <strong>Número de referencia:</strong> <span id="referenceNumber" class="text-[#10B981] font-bold"></span>
+        </p>
+      </div>
+      <button onclick="closeReservationSuccessModal()" class="bg-[#10B981] hover:bg-[#0D9F6E] text-white px-6 py-3 rounded-lg font-semibold transition-all">
+        Entendido
       </button>
     </div>
   </div>
@@ -475,94 +1102,541 @@
     </div>
   </footer>
 
-  <!-- Script -->
+  <!-- Script Mejorado -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuOverlay = document.getElementById('menu-overlay');
-    
-    // Función para alternar el menú
-    function toggleMenu() {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuOverlay.classList.toggle('hidden');
-      
-      // Cambiar el icono del botón
-      if (isOpen) {
-        menuBtn.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        `;
+      // Variables globales para el sistema de reservación
+      let currentStep = 1;
+      let reservationData = {};
+      const totalSteps = 4;
+
+      // Configuración de precios por hora
+      const PRICES = {
+        base: 150, // Precio base por hora por pista
+        extraPlayer: 25 // Costo adicional por jugador extra (más de 4)
+      };
+
+      // ==================== MENÚ MÓVIL SIMPLE Y FUNCIONAL ====================
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileOverlay = document.getElementById('mobile-overlay');
+      const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+      function openMobileMenu() {
+        console.log('Abriendo menú...');
+        console.log('mobileMenu existe:', !!mobileMenu);
+        console.log('mobileOverlay existe:', !!mobileOverlay);
+        
+        if (mobileMenu) {
+          mobileMenu.classList.add('active');
+          console.log('Clase active agregada al menú');
+          console.log('Clases del menú:', mobileMenu.className);
+        }
+        
+        if (mobileOverlay) {
+          mobileOverlay.classList.add('active');
+          console.log('Clase active agregada al overlay');
+        }
+        
         document.body.style.overflow = 'hidden';
-      } else {
-        menuBtn.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        `;
-        document.body.style.overflow = 'auto';
       }
-    }
 
-    // Evento para el botón del menú
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        toggleMenu();
+      function closeMobileMenu() {
+        console.log('Cerrando menú...');
+        if (mobileMenu) {
+          mobileMenu.classList.remove('active');
+        }
+        if (mobileOverlay) {
+          mobileOverlay.classList.remove('active');
+        }
+        document.body.style.overflow = '';
+      }
+
+      // Abrir menú
+      mobileMenuBtn.addEventListener('click', function() {
+        console.log('Click en toggle button');
+        openMobileMenu();
       });
-    }
 
-    // Cerrar menú al hacer clic en el overlay
-    menuOverlay.addEventListener('click', toggleMenu);
+      // Cerrar menú
+      mobileMenuClose.addEventListener('click', function() {
+        console.log('Click en close button');
+        closeMobileMenu();
+      });
 
-    // Cerrar menú al hacer clic en un enlace
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-      link.addEventListener('click', toggleMenu);
-    });
+      // Cerrar con overlay
+      mobileOverlay.addEventListener('click', closeMobileMenu);
 
-    // Cerrar menú al hacer clic fuera
-    document.addEventListener('click', function(e) {
-      if (mobileMenu.classList.contains('open') && 
-          !mobileMenu.contains(e.target) && 
-          e.target !== menuBtn) {
-        toggleMenu();
-      }
-    });
-  });
+      // Cerrar con enlaces
+      document.querySelectorAll('.mobile-menu-item').forEach(item => {
+        item.addEventListener('click', closeMobileMenu);
+      });
+
+      // Cerrar con Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // ==================== SLIDER MEJORADO ====================
       const slider = document.getElementById('slider');
       const slides = document.querySelectorAll('#slider > div');
       const dots = document.querySelectorAll('.slider-dot');
       let currentIndex = 0;
+      let slideInterval;
       const totalSlides = slides.length;
 
       function goToSlide(index) {
         currentIndex = (index + totalSlides) % totalSlides;
-        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        if (slider) {
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
         dots.forEach((dot, i) => {
           dot.classList.toggle('bg-[#8b5cf6]', i === currentIndex);
           dot.classList.toggle('bg-gray-300', i !== currentIndex);
         });
       }
 
-      const slideInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+      function startSlideShow() {
+        slideInterval = setInterval(() => goToSlide(currentIndex + 1), 5000);
+      }
+
+      function stopSlideShow() {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+        }
+      }
+
+      // Iniciar slideshow
+      if (slides.length > 0) {
+        startSlideShow();
+      }
       
       document.getElementById('prevBtn')?.addEventListener('click', () => {
-        clearInterval(slideInterval);
+        stopSlideShow();
         goToSlide(currentIndex - 1);
+        startSlideShow();
       });
       
       document.getElementById('nextBtn')?.addEventListener('click', () => {
-        clearInterval(slideInterval);
+        stopSlideShow();
         goToSlide(currentIndex + 1);
+        startSlideShow();
       });
       
       dots.forEach(dot => dot.addEventListener('click', () => {
-        clearInterval(slideInterval);
+        stopSlideShow();
         goToSlide(parseInt(dot.dataset.index));
+        startSlideShow();
       }));
 
-      // Modal functions
+      // ==================== SISTEMA DE RESERVACIÓN DE PISTAS ====================
+      
+      // Abrir modal de reservación de pistas
+      window.openLaneReservationModal = () => {
+        const modal = document.getElementById('laneReservationModal');
+        if (modal) {
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+          resetReservationForm();
+          setMinDate();
+          initializeLaneSelection();
+        }
+      };
+
+      // Cerrar modal de reservación
+      window.closeLaneReservationModal = () => {
+        const modal = document.getElementById('laneReservationModal');
+        if (modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+          resetReservationForm();
+        }
+      };
+
+      // Navegación entre pasos
+      window.nextStep = () => {
+        if (validateCurrentStep()) {
+          if (currentStep < totalSteps) {
+            hideStep(currentStep);
+            currentStep++;
+            showStep(currentStep);
+            
+            if (currentStep === 4) {
+              updateSummary();
+            }
+          }
+        }
+      };
+
+      window.previousStep = () => {
+        if (currentStep > 1) {
+          hideStep(currentStep);
+          currentStep--;
+          showStep(currentStep);
+        }
+      };
+
+      function showStep(step) {
+        const stepElement = document.getElementById(`step${step}`);
+        if (stepElement) {
+          stepElement.classList.remove('hidden');
+        }
+      }
+
+      function hideStep(step) {
+        const stepElement = document.getElementById(`step${step}`);
+        if (stepElement) {
+          stepElement.classList.add('hidden');
+        }
+      }
+
+      function validateCurrentStep() {
+        switch (currentStep) {
+          case 1:
+            return validateStep1();
+          case 2:
+            return validateStep2();
+          case 3:
+            return validateStep3();
+          default:
+            return true;
+        }
+      }
+
+      function validateStep1() {
+        const name = document.getElementById('customerName')?.value.trim();
+        const email = document.getElementById('customerEmail')?.value.trim();
+        const phone = document.getElementById('customerPhone')?.value.trim();
+        const players = document.getElementById('playerCount')?.value;
+        const laneCount = document.getElementById('laneCount')?.value;
+
+        if (!name || !email || !phone || !players || !laneCount) {
+          showNotification('Por favor completa todos los campos requeridos', 'error');
+          return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showNotification('Por favor ingresa un email válido', 'error');
+          return false;
+        }
+
+        // Validar coherencia entre jugadores y pistas
+        const playerCount = parseInt(players);
+        const lanes = parseInt(laneCount);
+        const maxPlayersPerLane = 8;
+        const maxTotalPlayers = lanes * maxPlayersPerLane;
+
+        if (playerCount > maxTotalPlayers) {
+          showNotification(`Con ${lanes} pista(s) puedes tener máximo ${maxTotalPlayers} jugadores`, 'error');
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateStep2() {
+        const date = document.getElementById('reservationDate')?.value;
+        const time = document.getElementById('timeSlot')?.value;
+        const duration = document.querySelector('input[name="duration"]:checked')?.value;
+
+        if (!date || !time || !duration) {
+          showNotification('Por favor selecciona fecha, hora y duración', 'error');
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateStep3() {
+        const selectedLanes = document.getElementById('selectedLanes')?.value;
+        const requiredLaneCount = parseInt(document.getElementById('laneCount')?.value || 0);
+        
+        if (!selectedLanes) {
+          showNotification('Por favor selecciona las pistas requeridas', 'error');
+          return false;
+        }
+
+        const selectedArray = selectedLanes.split(',').filter(lane => lane.trim() !== '');
+        if (selectedArray.length !== requiredLaneCount) {
+          showNotification(`Debes seleccionar exactamente ${requiredLaneCount} pista(s)`, 'error');
+          return false;
+        }
+
+        return true;
+      }
+
+      // Variables globales para selección de pistas
+      let selectedLanesArray = [];
+      let requiredLaneCount = 1;
+
+      // Inicializar selección múltiple de pistas
+      function initializeLaneSelection() {
+        const laneOptions = document.querySelectorAll('.lane-option.available');
+        const continueBtn = document.getElementById('continueToSummary');
+        const selectedLanesInput = document.getElementById('selectedLanes');
+        
+        // Limpiar selecciones previas
+        selectedLanesArray = [];
+        updateLaneSelectionDisplay();
+
+        laneOptions.forEach(option => {
+          option.addEventListener('click', function() {
+            const laneNumber = parseInt(this.dataset.lane);
+            const laneDiv = this.querySelector('div');
+            const indicator = this.querySelector('.lane-selection-indicator');
+            
+            if (selectedLanesArray.includes(laneNumber)) {
+              // Deseleccionar pista
+              selectedLanesArray = selectedLanesArray.filter(lane => lane !== laneNumber);
+              laneDiv.classList.remove('border-[#10B981]', 'bg-green-50');
+              laneDiv.classList.add('border-gray-200');
+              indicator.classList.add('hidden');
+            } else {
+              // Verificar si se puede seleccionar más pistas
+              if (selectedLanesArray.length < requiredLaneCount) {
+                // Seleccionar pista
+                selectedLanesArray.push(laneNumber);
+                laneDiv.classList.remove('border-gray-200');
+                laneDiv.classList.add('border-[#10B981]', 'bg-green-50');
+                indicator.classList.remove('hidden');
+              } else {
+                showNotification(`Solo puedes seleccionar ${requiredLaneCount} pista(s)`, 'error');
+                return;
+              }
+            }
+
+            // Ordenar array
+            selectedLanesArray.sort((a, b) => a - b);
+            
+            // Actualizar input oculto
+            selectedLanesInput.value = selectedLanesArray.join(',');
+            
+            // Actualizar display
+            updateLaneSelectionDisplay();
+            
+            // Habilitar/deshabilitar botón continuar
+            const isComplete = selectedLanesArray.length === requiredLaneCount;
+            continueBtn.disabled = !isComplete;
+            if (isComplete) {
+              continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+              continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+          });
+        });
+      }
+
+      // Actualizar display de selección de pistas
+      function updateLaneSelectionDisplay() {
+        const selectedLanesText = document.getElementById('selectedLanesText');
+        const selectionCount = document.getElementById('selectionCount');
+        const summaryDiv = document.getElementById('laneSelectionSummary');
+        
+        if (selectedLanesArray.length > 0) {
+          selectedLanesText.textContent = selectedLanesArray.map(lane => `Pista ${lane}`).join(', ');
+          selectionCount.textContent = `(${selectedLanesArray.length}/${requiredLaneCount})`;
+          summaryDiv.classList.remove('hidden');
+        } else {
+          selectedLanesText.textContent = 'Ninguna';
+          selectionCount.textContent = `(0/${requiredLaneCount})`;
+          summaryDiv.classList.add('hidden');
+        }
+      }
+
+      // Actualizar instrucciones y configuración cuando cambie la cantidad de pistas
+      function updateLaneCountDisplay() {
+        const laneCountSelect = document.getElementById('laneCount');
+        const requiredLaneCountSpan = document.getElementById('requiredLaneCount');
+        const laneInfoDiv = document.getElementById('laneInfo');
+        const laneInfoText = document.getElementById('laneInfoText');
+        
+        if (laneCountSelect && laneCountSelect.value) {
+          requiredLaneCount = parseInt(laneCountSelect.value);
+          requiredLaneCountSpan.textContent = requiredLaneCount;
+          
+          // Mostrar información adicional
+          laneInfoDiv.classList.remove('hidden');
+          const players = parseInt(document.getElementById('playerCount')?.value || 0);
+          const playersPerLane = players > 0 ? Math.ceil(players / requiredLaneCount) : 0;
+          
+          let infoText = `Con ${requiredLaneCount} pista(s)`;
+          if (players > 0) {
+            infoText += ` y ${players} jugadores, tendrás aproximadamente ${playersPerLane} jugador(es) por pista.`;
+          } else {
+            infoText += ' seleccionadas.';
+          }
+          
+          if (requiredLaneCount > 4) {
+            infoText += ' ¡Perfecto para eventos grandes!';
+          }
+          
+          laneInfoText.textContent = infoText;
+        } else {
+          laneInfoDiv.classList.add('hidden');
+        }
+      }
+
+      // Actualizar resumen
+      function updateSummary() {
+        const name = document.getElementById('customerName')?.value || '';
+        const email = document.getElementById('customerEmail')?.value || '';
+        const phone = document.getElementById('customerPhone')?.value || '';
+        const players = document.getElementById('playerCount')?.value || '';
+        const laneCount = document.getElementById('laneCount')?.value || '';
+        const date = document.getElementById('reservationDate')?.value || '';
+        const time = document.getElementById('timeSlot')?.value || '';
+        const duration = document.querySelector('input[name="duration"]:checked')?.value || '';
+        const selectedLanes = document.getElementById('selectedLanes')?.value || '';
+
+        document.getElementById('summaryName').textContent = name;
+        document.getElementById('summaryEmail').textContent = email;
+        document.getElementById('summaryPhone').textContent = phone;
+        document.getElementById('summaryPlayers').textContent = `${players} ${players == 1 ? 'jugador' : 'jugadores'}`;
+        document.getElementById('summaryDate').textContent = formatDate(date);
+        document.getElementById('summaryTime').textContent = formatTime(time);
+        document.getElementById('summaryDuration').textContent = `${duration} ${duration == 1 ? 'hora' : 'horas'}`;
+        
+        // Mostrar pistas seleccionadas
+        if (selectedLanes) {
+          const lanesArray = selectedLanes.split(',');
+          if (lanesArray.length === 1) {
+            document.getElementById('summaryLane').textContent = `Pista ${lanesArray[0]}`;
+          } else {
+            document.getElementById('summaryLane').textContent = `Pistas ${lanesArray.join(', ')}`;
+          }
+        } else {
+          document.getElementById('summaryLane').textContent = 'No seleccionadas';
+        }
+
+        // Calcular precio (ahora incluye múltiples pistas)
+        const totalPrice = calculatePrice(parseInt(players), parseFloat(duration), parseInt(laneCount));
+        document.getElementById('totalPrice').textContent = `L. ${totalPrice.toFixed(2)}`;
+      }
+
+      function calculatePrice(players, duration, laneCount = 1) {
+        // Precio base por pista
+        const basePricePerLane = PRICES.base * duration * laneCount;
+        
+        // Calcular costo adicional por jugadores extra (más de 4 por pista)
+        const maxPlayersIncluded = 4 * laneCount;
+        const extraPlayers = Math.max(0, players - maxPlayersIncluded);
+        const extraPlayerCost = extraPlayers * PRICES.extraPlayer * duration;
+        
+        return basePricePerLane + extraPlayerCost;
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const date = new Date(dateStr + 'T00:00:00');
+        return date.toLocaleDateString('es-ES', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      }
+
+      function formatTime(timeStr) {
+        if (!timeStr) return '';
+        const [hour] = timeStr.split(':');
+        const hourNum = parseInt(hour);
+        return hourNum >= 12 ? `${hourNum === 12 ? 12 : hourNum - 12}:00 PM` : `${hourNum}:00 AM`;
+      }
+
+      // Establecer fecha mínima
+      function setMinDate() {
+        const dateInput = document.getElementById('reservationDate');
+        if (dateInput) {
+          const today = new Date();
+          const tomorrow = new Date(today);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+      }
+
+      // Resetear formulario
+      function resetReservationForm() {
+        currentStep = 1;
+        document.querySelectorAll('.step-content').forEach((step, index) => {
+          step.classList.toggle('hidden', index !== 0);
+        });
+        
+        const form = document.getElementById('laneReservationForm');
+        if (form) {
+          form.reset();
+        }
+
+        // Resetear variables globales
+        selectedLanesArray = [];
+        requiredLaneCount = 1;
+
+        const selectedLanesInput = document.getElementById('selectedLanes');
+        if (selectedLanesInput) {
+          selectedLanesInput.value = '';
+        }
+
+        const continueBtn = document.getElementById('continueToSummary');
+        if (continueBtn) {
+          continueBtn.disabled = true;
+          continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Resetear selección visual de pistas
+        document.querySelectorAll('.lane-option.available').forEach(option => {
+          const div = option.querySelector('div');
+          const indicator = option.querySelector('.lane-selection-indicator');
+          div.classList.remove('border-[#10B981]', 'bg-green-50');
+          div.classList.add('border-gray-200');
+          indicator.classList.add('hidden');
+        });
+
+        // Ocultar displays
+        document.getElementById('laneSelectionSummary').classList.add('hidden');
+        document.getElementById('laneInfo').classList.add('hidden');
+      }
+
+      // Manejar envío del formulario
+      const laneReservationForm = document.getElementById('laneReservationForm');
+      if (laneReservationForm) {
+        laneReservationForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Simular envío
+          showNotification('Procesando reservación...', 'info');
+          
+          setTimeout(() => {
+            closeLaneReservationModal();
+            openReservationSuccessModal();
+            
+            // Generar número de referencia
+            const refNumber = 'SC' + Date.now().toString().slice(-6);
+            document.getElementById('referenceNumber').textContent = refNumber;
+          }, 2000);
+        });
+      }
+
+      // Modales de confirmación
+      window.openReservationSuccessModal = () => {
+        const modal = document.getElementById('reservationSuccessModal');
+        if (modal) {
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      window.closeReservationSuccessModal = () => {
+        const modal = document.getElementById('reservationSuccessModal');
+        if (modal) {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      };
+
+      // ==================== MODALES EXISTENTES ====================
       window.openModal = () => {
         document.getElementById('modal').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
@@ -570,7 +1644,7 @@
       
       window.closeModal = () => {
         document.getElementById('modal').classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
       };
       
       window.openSuccessModal = () => {
@@ -580,22 +1654,154 @@
       
       window.closeSuccessModal = () => {
         document.getElementById('successModal').classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
       };
 
+      // Formulario de eventos existente
       document.getElementById('bookingForm')?.addEventListener('submit', function (e) {
         e.preventDefault();
+        showNotification('Procesando solicitud...', 'info');
         setTimeout(() => {
           closeModal();
           openSuccessModal();
           this.reset();
-        }, 1000);
+        }, 1500);
       });
 
+      // Cerrar modales al hacer clic fuera
       window.addEventListener('click', function (e) {
         if (e.target === document.getElementById('modal')) closeModal();
         if (e.target === document.getElementById('successModal')) closeSuccessModal();
+        if (e.target === document.getElementById('laneReservationModal')) closeLaneReservationModal();
+        if (e.target === document.getElementById('reservationSuccessModal')) closeReservationSuccessModal();
       });
+
+      // ==================== SISTEMA DE NOTIFICACIONES ====================
+      function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transition-all transform translate-x-full`;
+        
+        let bgColor, icon;
+        switch (type) {
+          case 'success':
+            bgColor = 'bg-green-500';
+            icon = 'fas fa-check-circle';
+            break;
+          case 'error':
+            bgColor = 'bg-red-500';
+            icon = 'fas fa-exclamation-triangle';
+            break;
+          default:
+            bgColor = 'bg-blue-500';
+            icon = 'fas fa-info-circle';
+        }
+        
+        notification.classList.add(bgColor, 'text-white');
+        notification.innerHTML = `<i class="${icon} mr-2"></i>${message}`;
+
+        document.body.appendChild(notification);
+
+        // Mostrar
+        setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+
+        // Ocultar después de 5 segundos
+        setTimeout(() => {
+          notification.classList.add('translate-x-full');
+          setTimeout(() => notification.remove(), 300);
+        }, 5000);
+
+        // Permitir cerrar haciendo clic
+        notification.addEventListener('click', () => {
+          notification.classList.add('translate-x-full');
+          setTimeout(() => notification.remove(), 300);
+        });
+      }
+
+      // ==================== MEJORAS DE UX ====================
+      
+      // Smooth scroll para enlaces internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Lazy loading para imágenes
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }
+
+      // ==================== EVENT LISTENERS PARA NUEVOS CAMPOS ====================
+      
+      // Listener para cantidad de pistas
+      const laneCountSelect = document.getElementById('laneCount');
+      if (laneCountSelect) {
+        laneCountSelect.addEventListener('change', updateLaneCountDisplay);
+      }
+
+      // Listener para número de jugadores
+      const playerCountSelect = document.getElementById('playerCount');
+      if (playerCountSelect) {
+        playerCountSelect.addEventListener('change', updateLaneCountDisplay);
+      }
+
+      // Inicializar displays dinámicos
+      updateLaneCountDisplay();
+    });
+
+    // ==================== FUNCIONES GLOBALES DE UTILIDAD ====================
+    
+    // Función para validar formularios
+    function validateForm(formElement) {
+      const requiredFields = formElement.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          field.classList.remove('border-red-500');
+        }
+      });
+
+      return isValid;
+    }
+
+    // Función para formatear números de teléfono
+    function formatPhoneNumber(input) {
+      let value = input.value.replace(/\D/g, '');
+      if (value.startsWith('504')) {
+        value = value.slice(3);
+      }
+      if (value.length === 8) {
+        value = value.replace(/(\d{4})(\d{4})/, '$1-$2');
+      }
+      input.value = '+504 ' + value;
+    }
+
+    // Aplicar formato de teléfono automáticamente
+    document.addEventListener('input', function(e) {
+      if (e.target.type === 'tel') {
+        formatPhoneNumber(e.target);
+      }
+    });
   </script>
 </body>
 </html>

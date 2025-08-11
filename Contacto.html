@@ -22,6 +22,8 @@
       padding: 0.5rem 1rem;
       color: #2d3748;
       font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
     .nav-link::after {
       content: '';
@@ -49,6 +51,161 @@
       width: auto;
       object-fit: contain;
     }
+
+    /* Estilos base del menú móvil - SIN CONFLICTOS */
+    .mobile-menu {
+      display: none;
+    }
+    .mobile-overlay {
+      display: none;
+    }
+
+    /* FIXES ESPECÍFICOS PARA MÓVIL SOLAMENTE */
+    @media (max-width: 768px) {
+      /* Navbar móvil optimizado */
+      .nav-container {
+        grid-template-columns: auto 1fr auto;
+        padding: 0 1rem;
+      }
+      .logo-container {
+        width: auto;
+      }
+      
+      /* Logo más pequeño en móvil */
+      .logo-img {
+        max-height: 45px !important;
+        height: 45px !important;
+      }
+      
+      /* Toggle button bien visible */
+      #mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+      }
+      
+      /* MENÚ MÓVIL DESDE LA DERECHA - FORZADO PARA MÓVIL */
+      .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: -320px !important;
+        width: 300px !important;
+        height: 100vh !important;
+        background: #ffffff !important;
+        z-index: 99999 !important;
+        transform: translateX(0) !important;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+      
+      .mobile-menu.active {
+        right: 0 !important;
+      }
+      
+      .mobile-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: all 0.3s ease !important;
+        display: block !important;
+      }
+      
+      .mobile-overlay.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      /* Elementos del menú móvil */
+      .mobile-menu-header {
+        background: #FFAC1C !important;
+        padding: 1.25rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border-bottom: 2px solid rgba(0,0,0,0.1) !important;
+      }
+      
+      .mobile-menu-item {
+        display: flex !important;
+        align-items: center !important;
+        padding: 1.25rem 1.5rem !important;
+        color: #2d3748 !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .mobile-menu-item:hover {
+        background: linear-gradient(90deg, #f8fafc, #e2e8f0) !important;
+        color: #8b5cf6 !important;
+        padding-left: 2rem !important;
+      }
+      
+      .mobile-menu-item i {
+        margin-right: 12px !important;
+        width: 18px !important;
+        font-size: 16px !important;
+        color: #FFAC1C !important;
+      }
+    }
+
+    /* Optimizaciones de formulario */
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #374151;
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #8b5cf6, #7c4dff);
+      border: none;
+      border-radius: 0.75rem;
+      color: white;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+    }
+
     /* Estilos para el footer */
     .footer-bg {
       background-color: rgba(45, 55, 72, 0.95);
@@ -65,13 +222,81 @@
     .transition-all {
       transition: all 0.3s ease;
     }
-    /* Estilo para el mapa */
+    /* Estilo para el mapa mejorado */
     .map-container {
-      height: 300px;
+      height: 350px;
       background-color: #f3f4f6;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
       overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .map-container:hover {
+      box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Mejoras responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        grid-template-columns: auto 1fr auto;
+        padding: 0 1rem;
+      }
+      .logo-container {
+        width: auto;
+      }
+      .form-input {
+        padding: 0.75rem;
+      }
+      .map-container {
+        height: 250px;
+      }
+      .mobile-menu {
+        width: 100%;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: 2.5rem !important;
+      }
+      h2 {
+        font-size: 1.75rem !important;
+      }
+    }
+
+    /* Animaciones de carga */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Estados de carga para el formulario */
+    .loading {
+      position: relative;
+      pointer-events: none;
+    }
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -83,26 +308,26 @@
         
         <!-- Menú izquierdo -->
         <div class="hidden md:flex justify-end space-x-8 h-full items-center">
-          <a href="servicios.html" class="nav-link">Servicios</a>
-          <a href="torneos.html" class="nav-link">Torneos</a>
+          <a href="./Servicios.html" class="nav-link">Servicios</a>
+          <a href="./Torneos.html" class="nav-link">Torneos</a>
         </div>
         
         <!-- Logo al 50% y centrado -->
         <div class="logo-container h-full py-2">
           <a href="./Index.html" class="h-full flex items-center">
-            <img src="../IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
+            <img src="./IMG/Logo.png" alt="Logo Bowling" class="logo-img h-full">
           </a>
         </div>
         
         <!-- Menú derecho -->
         <div class="hidden md:flex justify-start space-x-8 h-full items-center">
-          <a href="noticias.html" class="nav-link">Noticias</a>
-          <a href="contacto.html" class="nav-link">Contáctanos</a>
+          <a href="./Noticias.html" class="nav-link">Noticias</a>
+          <a href="./Contacto.html" class="nav-link">Contáctanos</a>
         </div>
         
-        <!-- Menú móvil -->
+        <!-- Botón menú móvil -->
         <div class="md:hidden flex items-center justify-end">
-          <button id="menu-btn" class="text-gray-800 p-2">
+          <button id="mobile-menu-btn" class="text-gray-800 p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-all">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -112,44 +337,92 @@
     </div>
   </nav>
 
+  <!-- Overlay para menú móvil -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  <!-- Menú móvil lateral -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <img src="./IMG/Logo.png" alt="Strike City" class="h-8">
+      <button id="mobile-menu-close" class="text-gray-800 p-1 hover:bg-white hover:bg-opacity-20 rounded">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="py-4">
+      <a href="./Servicios.html" class="mobile-menu-item">
+        <i class="fas fa-concierge-bell mr-3"></i>Servicios
+      </a>
+      <a href="./Torneos.html" class="mobile-menu-item">
+        <i class="fas fa-trophy mr-3"></i>Torneos
+      </a>
+      <a href="./Noticias.html" class="mobile-menu-item">
+        <i class="fas fa-newspaper mr-3"></i>Noticias
+      </a>
+      <a href="./Contacto.html" class="mobile-menu-item">
+        <i class="fas fa-envelope mr-3"></i>Contáctanos
+      </a>
+    </div>
+  </div>
+
   <!-- Contenido específico de Contacto -->
   <main class="max-w-7xl mx-auto px-4 py-16">
     <h1 class="text-4xl font-bold text-center mb-12 text-[#8b5cf6]">Contáctanos</h1>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <!-- Formulario de contacto -->
-      <div>
-        <div class="bg-white rounded-xl shadow-lg p-8">
+      <div class="fade-in">
+        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all">
           <h2 class="text-2xl font-bold mb-6 text-gray-800">Envía un mensaje</h2>
-          <form class="space-y-6">
-            <div>
-              <label for="name" class="block text-gray-700 mb-2 font-medium">Nombre completo *</label>
-              <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6] transition-all" required>
+          <form id="contact-form" class="space-y-6">
+            <div class="form-group">
+              <label for="name" class="form-label">
+                <i class="fas fa-user mr-2 text-[#8b5cf6]"></i>Nombre completo *
+              </label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre completo" required>
             </div>
             
-            <div>
-              <label for="email" class="block text-gray-700 mb-2 font-medium">Correo electrónico *</label>
-              <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6] transition-all" required>
+            <div class="form-group">
+              <label for="email" class="form-label">
+                <i class="fas fa-envelope mr-2 text-[#FFAC1C]"></i>Correo electrónico *
+              </label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
             </div>
             
-            <div>
-              <label for="subject" class="block text-gray-700 mb-2 font-medium">Asunto *</label>
-              <select id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6] transition-all" required>
+            <div class="form-group">
+              <label for="phone" class="form-label">
+                <i class="fas fa-phone mr-2 text-[#8b5cf6]"></i>Teléfono (opcional)
+              </label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+504 0000-0000">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject" class="form-label">
+                <i class="fas fa-tag mr-2 text-[#FFAC1C]"></i>Asunto *
+              </label>
+              <select id="subject" name="subject" class="form-input" required>
                 <option value="">Selecciona un asunto</option>
-                <option value="reservations">Reservaciones</option>
+                <option value="reservations">Reservaciones de pistas</option>
                 <option value="events">Eventos corporativos</option>
-                <option value="tournaments">Torneos</option>
+                <option value="tournaments">Torneos y competencias</option>
+                <option value="parties">Fiestas y celebraciones</option>
+                <option value="info">Información general</option>
                 <option value="other">Otro</option>
               </select>
             </div>
             
-            <div>
-              <label for="message" class="block text-gray-700 mb-2 font-medium">Mensaje *</label>
-              <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8b5cf6] focus:border-[#8b5cf6] transition-all" required></textarea>
+            <div class="form-group">
+              <label for="message" class="form-label">
+                <i class="fas fa-comment mr-2 text-[#8b5cf6]"></i>Mensaje *
+              </label>
+              <textarea id="message" name="message" rows="5" class="form-input" placeholder="Escribe tu mensaje aquí..." required></textarea>
             </div>
             
-            <button type="submit" class="w-full bg-[#8b5cf6] hover:bg-[#7c4dff] text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105">
-              Enviar mensaje
+            <button type="submit" class="submit-btn w-full">
+              <span class="btn-text">
+                <i class="fas fa-paper-plane mr-2"></i>Enviar mensaje
+              </span>
             </button>
           </form>
         </div>
@@ -299,11 +572,172 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const menuBtn = document.getElementById('menu-btn');
+      // ==================== MENÚ MÓVIL SIMPLE Y FUNCIONAL ====================
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      const mobileOverlay = document.getElementById('mobile-overlay');
+      const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+      function openMobileMenu() {
+        console.log('Abriendo menú...');
+        console.log('mobileMenu existe:', !!mobileMenu);
+        console.log('mobileOverlay existe:', !!mobileOverlay);
+        
+        if (mobileMenu) {
+          mobileMenu.classList.add('active');
+          console.log('Clase active agregada al menú');
+          console.log('Clases del menú:', mobileMenu.className);
+        }
+        
+        if (mobileOverlay) {
+          mobileOverlay.classList.add('active');
+          console.log('Clase active agregada al overlay');
+        }
+        
+        document.body.style.overflow = 'hidden';
       }
+
+      function closeMobileMenu() {
+        console.log('Cerrando menú...');
+        if (mobileMenu) {
+          mobileMenu.classList.remove('active');
+        }
+        if (mobileOverlay) {
+          mobileOverlay.classList.remove('active');
+        }
+        document.body.style.overflow = '';
+      }
+
+      // Abrir menú
+      mobileMenuBtn.addEventListener('click', function() {
+        console.log('Click en toggle button');
+        openMobileMenu();
+      });
+
+      // Cerrar menú
+      mobileMenuClose.addEventListener('click', function() {
+        console.log('Click en close button');
+        closeMobileMenu();
+      });
+
+      // Cerrar con overlay
+      mobileOverlay.addEventListener('click', closeMobileMenu);
+
+      // Cerrar con enlaces
+      document.querySelectorAll('.mobile-menu-item').forEach(item => {
+        item.addEventListener('click', closeMobileMenu);
+      });
+
+      // Cerrar con Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // Formulario de contacto mejorado
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = contactForm?.querySelector('button[type="submit"]');
+      const btnText = submitBtn?.querySelector('.btn-text');
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validación básica
+          const formData = new FormData(contactForm);
+          const data = Object.fromEntries(formData);
+          
+          if (!data.name || !data.email || !data.subject || !data.message) {
+            showNotification('Por favor completa todos los campos obligatorios', 'error');
+            return;
+          }
+
+          // Validar email
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(data.email)) {
+            showNotification('Por favor ingresa un email válido', 'error');
+            return;
+          }
+
+          // Mostrar estado de carga
+          submitBtn.classList.add('loading');
+          if (btnText) btnText.style.opacity = '0';
+          
+          // Simular envío (aquí integrarías con tu backend)
+          setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            if (btnText) btnText.style.opacity = '1';
+            
+            showNotification('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
+            contactForm.reset();
+          }, 2000);
+        });
+      }
+
+      // Animaciones al hacer scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, observerOptions);
+
+      // Observar elementos que deben animarse
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Sistema de notificaciones
+      function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transition-all transform translate-x-full`;
+        
+        if (type === 'success') {
+          notification.classList.add('bg-green-500', 'text-white');
+          notification.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${message}`;
+        } else if (type === 'error') {
+          notification.classList.add('bg-red-500', 'text-white');
+          notification.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i>${message}`;
+        } else {
+          notification.classList.add('bg-blue-500', 'text-white');
+          notification.innerHTML = `<i class="fas fa-info-circle mr-2"></i>${message}`;
+        }
+
+        document.body.appendChild(notification);
+
+        // Mostrar
+        setTimeout(() => {
+          notification.classList.remove('translate-x-full');
+        }, 100);
+
+        // Ocultar después de 5 segundos
+        setTimeout(() => {
+          notification.classList.add('translate-x-full');
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 300);
+        }, 5000);
+      }
+
+      // Mejorar experiencia del usuario con efectos hover
+      document.querySelectorAll('.form-input').forEach(input => {
+        input.addEventListener('focus', function() {
+          this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.classList.remove('focused');
+        });
+      });
     });
   </script>
 </body>
